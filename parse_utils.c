@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:15:34 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 19:51:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/19 18:24:04 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_init_pipex(char **argv, char **env, t_pipex *pipex)
 int	ft_check_files(t_pipex pipex)
 {
 	int		fd1;
-	int		fd2;
 
 	fd1 = open(pipex.infile, O_RDONLY);
 	if (fd1 == -1)
@@ -39,7 +38,5 @@ int	ft_check_files(t_pipex pipex)
 		exit(1);
 	}
 	close(fd1);
-	fd2 = open(pipex.outfile, O_WRONLY | O_CREAT, S_IWUSR);
-	close(fd2);
 	return (1);
 }
