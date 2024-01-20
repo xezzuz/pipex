@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:40:00 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 19:55:33 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/20 11:11:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,21 @@ char	*ft_check_cmd(char **cmd, char **paths)
 void	ft_check_args(t_pipex *pipex)
 {
 	ft_check_files(*pipex);
-	if (access(*pipex->cmd1, X_OK) == 0)
-		pipex->cmds_paths[0] = *pipex->cmd1;
-	else
+	int i = 0;
+	while (pipex->cmds_args[i])
 	{
-		pipex->cmds_paths[0] = ft_check_cmd(pipex->cmd1, pipex->paths); //free
-		if (!pipex->cmds_paths[0])
+		if (access(pipex->cmds_args[i][0], X_OK) == 0)
+			pipex->cmds_paths[i] = pipex->cmds_args[i][0];
+		else
 		{
-			ft_putstr_fd("pipex: command not found: cmd1\n", 2);
-			exit(1);
+			pipex->cmds_paths[i] = ft_check_cmd(pipex->cmds_args[i], pipex->paths); //free
+			if (!pipex->cmds_paths[i])
+			{
+				ft_putstr_fd("pipex: command not found: cmd\n", 2);
+				exit(1);
+			}
 		}
+		i++;
 	}
-	if (access(*pipex->cmd2, X_OK) == 0)
-		pipex->cmds_paths[1] = *pipex->cmd2;
-	else
-	{
-		pipex->cmds_paths[1] = ft_check_cmd(pipex->cmd2, pipex->paths);
-		if (!pipex->cmds_paths[1])
-		{
-			ft_putstr_fd("pipex: command not found: cmd2\n", 2);
-			exit(1);
-		}
-	}
-	pipex->cmds_paths[2] = NULL;
-	// ft_print_matrix(pipex->cmd1);
-	// ft_print_matrix(pipex->cmd2);
-	// ft_print_matrix(pipex->cmds_paths);
+	pipex->cmds_paths[i] = NULL;
 }

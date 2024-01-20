@@ -6,38 +6,64 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:59:13 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/19 18:23:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/20 17:47:31 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	spawn_child(int read_fd, int write_fd, t_pipex pipex, int i)
+{
+	if (read_fd != 0)
+	{
+		dup2(read_fd, 0);
+		close(read_fd);
+	}
+	if (write_fd != 1)
+	{
+		dup2(write_fd, 1);
+		close(write_fd);
+	}
+	execve(pipex.cmds_paths[i], pipex.cmds_args[i], NULL);
+}
+
 void	ft_exec_cmd(t_pipex pipex)
 {
-	int		id;
+	int		i;
+	int		j;
+	// int		id;
+	int		ids[pipex.cmds_nbr];
 	int		fd[2];
 
-	pipe(fd);		// PROTECTION
-	id = fork();	// PROTECTION
-	if (id == 0)
+	pipex.in_fd = open(pipex.infile, O_RDONLY);
+	i = 0;
+	while (i < pipex.cmds_nbr)
 	{
-		int fd1 = open(pipex.infile, O_RDONLY);		// PROTECTION
-		dup2(fd1, 0);
-		dup2(fd[1], 1);
-		close(fd[0]);
-		execve(pipex.cmds_paths[0], pipex.cmd1, NULL);
-		close(fd[1]);
-		close(fd1);
+		pipe(fd);
+		ids[i] = fork();
+		if (ids[i] == 0)	//	CHILD
+		{
+			// close(fd[0]);
+			if (i == pipex.cmds_nbr - 1)
+			{
+				pipex.out_fd = open(pipex.outfile, O_RDWR | O_CREAT | O_TRUNC , 0644);
+				spawn_child(pipex.in_fd, pipex.out_fd, pipex, i);
+			}
+			else
+				spawn_child(pipex.in_fd, fd[1], pipex, i);
+		}
+		else			//	PARENT
+		{
+			close(fd[1]);
+			close(pipex.in_fd);
+			pipex.in_fd = fd[0];
+			i++;
+		}
 	}
-	else
-	{
-		int fd2 = open(pipex.outfile, O_RDWR | O_CREAT | O_TRUNC , 0644);	// PROTECTION
-		dup2(fd[0], 0);
-		dup2(fd2, 1);
-		close(fd[1]);
-		execve(pipex.cmds_paths[1], pipex.cmd2, NULL);
-		close(fd[0]);
-		close(fd2);
-		wait(NULL);
-	}
+	// spawn_child(pipex.in_fd, pipex.out_fd, pipex, i);
+	j = 0;
+	while (j < i)
+		waitpid(ids[j++], NULL, 0);
+	close(pipex.in_fd);
+	//close(pipex.out_fd);
 }

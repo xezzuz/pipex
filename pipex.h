@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:56:39 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 19:58:41 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/20 14:10:21 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 typedef struct s_pipex
 {
+	int		cmds_nbr;
 	char	*infile;
-	char	**cmd1;
-	char	**cmd2;
 	char	*outfile;
+	int		in_fd;
+	int		out_fd;
 	char	**cmds_paths;
+	char	***cmds_args;
 	char	**paths;
 }	t_pipex;
 
@@ -43,7 +45,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	ft_print_matrix(char **matrix);
 
 //	PIPEX
-void	ft_init_pipex(char **argv, char **env, t_pipex *pipex);
+void	ft_init_pipex(int argc, char **argv, char **env, t_pipex *pipex);
 void	ft_check_args(t_pipex *pipex);
 int		ft_check_files(t_pipex pipex);
 char	**ft_get_path(char **env);

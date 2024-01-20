@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 16:47:10 by nazouz            #+#    #+#              #
-#    Updated: 2024/01/18 19:59:06 by nazouz           ###   ########.fr        #
+#    Updated: 2024/01/20 11:10:07 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	pipex
 
 CC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
 INCLUDES		=	./pipex.h
 
