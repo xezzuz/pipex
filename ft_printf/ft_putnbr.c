@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 15:56:24 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 21:51:49 by nazouz           ###   ########.fr       */
+/*   Created: 2023/11/08 12:44:19 by nazouz            #+#    #+#             */
+/*   Updated: 2024/01/22 11:12:50 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-void	aa(void)
+int	ft_putnbr(int n)
 {
-	system("leaks pipex");
-}
+	int		count;
 
-int main(int argc, char **argv, char **env)
-{
-	t_pipex		pipex;
-
-	if (argc != 5)
-		return (ft_putstr_fd("Usage: ./pipex infile cmd1 cmd2 outfile\n", 2), 1);
-	ft_init_pipex(argc, argv, env, &pipex);
-	ft_check_args(&pipex);
-	ft_exec_cmd(pipex);
-	atexit(aa);
-	ft_exit(&pipex, 0);
+	count = 0;
+	if (n == -2147483648)
+		return (write(2, "-2147483648", 11));
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		if (count == -1)
+			return (-1);
+		n = -n;
+	}
+	if (n < 10)
+	{
+		count += ft_putchar(n + 48);
+		return (count);
+	}
+	count += ft_putnbr(n / 10);
+	if (count < 0)
+		return (-1);
+	count += ft_putnbr(n % 10);
+	return (count);
 }

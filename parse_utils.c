@@ -1,51 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 19:15:34 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/20 12:27:44 by nazouz           ###   ########.fr       */
+/*   Created: 2024/01/17 16:40:00 by nazouz            #+#    #+#             */
+/*   Updated: 2024/01/22 21:09:10 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_init_pipex(int argc, char **argv, char **env, t_pipex *pipex)
+char	**ft_get_path(char **env)
 {
-	pipex->cmds_nbr = argc - 3;
-	pipex->infile = argv[1];
-	pipex->outfile = argv[argc - 1];
-	pipex->paths = ft_get_path(env);
-	pipex->cmds_paths = malloc((argc - 2) * sizeof(char *));
-	if (!pipex->cmds_paths)
+	int			i;
+	int			found;
+	char		**paths;
+
+	i = 0;
+	found = 0;
+	while (*env)
 	{
-		ft_putstr_fd("Error: Allocation failed\n", 2);
-		exit(1);
+		if (!ft_strncmp("PATH", *env, 4))
+		{
+			found = 1;
+			break ;
+		}
+		env++;
 	}
-	pipex->cmds_args = malloc((argc - 2) * sizeof(char **));
-	int i = 2;
-	int j = 0;
-	while (i < argc - 1)
-	{
-		pipex->cmds_args[j] = ft_split(argv[i], ' ');
-		i++;
-		j++;
-	}
-	pipex->cmds_args[j] = NULL;
+	if (!found)
+		return (NULL);
+	paths = ft_split((*env) + 5, ':');
+	return (paths);
 }
 
-int	ft_check_files(t_pipex pipex)
+char	*ft_check_cmd(char **cmd, char **paths)
 {
-	int		fd1;
+	int			i;
+	char		*temp;
+	char		*result;
 
-	fd1 = open(pipex.infile, O_RDONLY);
-	if (fd1 == -1)
+	i = 0;
+	while (paths[i])
 	{
-		ft_putstr_fd("Error: Cannot open infile\n", 2);
-		exit(1);
+		temp = ft_strjoin(paths[i], "/");
+		result = ft_strjoin(temp, cmd[0]);
+		free(temp);
+		if (access(result, X_OK) == 0)
+			return (result);
+		free(result);
+		i++;
 	}
-	close(fd1);
-	return (1);
+	return (NULL);
 }

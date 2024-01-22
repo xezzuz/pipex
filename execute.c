@@ -6,51 +6,47 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:59:13 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/20 17:47:31 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/22 21:43:54 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	spawn_child(int read_fd, int write_fd, t_pipex pipex, int i)
+void	ft_duplicate(int read_fd, int write_fd, t_pipex pipex, int i)
 {
-	if (read_fd != 0)
-	{
-		dup2(read_fd, 0);
-		close(read_fd);
-	}
-	if (write_fd != 1)
-	{
-		dup2(write_fd, 1);
-		close(write_fd);
-	}
+	if (dup2(read_fd, 0) == -1)
+		(perror("pipex"), exit(EXIT_FAILURE));
+	close(read_fd);
+	if (dup2(write_fd, 1) == -1)
+		(perror("pipex"), exit(EXIT_FAILURE));
+	close(write_fd);
+	if (!pipex.cmds_paths[i])
+		(ft_printf("pipex: command not found: %s\n", pipex.cmds_args[i][0]), exit(EXIT_FAILURE));
 	execve(pipex.cmds_paths[i], pipex.cmds_args[i], NULL);
+	perror("pipex");
+	exit(EXIT_FAILURE);
 }
 
 void	ft_exec_cmd(t_pipex pipex)
 {
 	int		i;
 	int		j;
-	// int		id;
 	int		ids[pipex.cmds_nbr];
 	int		fd[2];
 
-	pipex.in_fd = open(pipex.infile, O_RDONLY);
 	i = 0;
+	pipex.in_fd = pipex.infile_fd;
 	while (i < pipex.cmds_nbr)
 	{
 		pipe(fd);
 		ids[i] = fork();
 		if (ids[i] == 0)	//	CHILD
 		{
-			// close(fd[0]);
-			if (i == pipex.cmds_nbr - 1)
-			{
-				pipex.out_fd = open(pipex.outfile, O_RDWR | O_CREAT | O_TRUNC , 0644);
-				spawn_child(pipex.in_fd, pipex.out_fd, pipex, i);
-			}
+			close(fd[0]);
+			if (i != pipex.cmds_nbr - 1)
+				ft_duplicate(pipex.in_fd, fd[1], pipex, i);
 			else
-				spawn_child(pipex.in_fd, fd[1], pipex, i);
+				ft_duplicate(pipex.in_fd, pipex.outfile_fd, pipex, i);
 		}
 		else			//	PARENT
 		{
@@ -60,10 +56,9 @@ void	ft_exec_cmd(t_pipex pipex)
 			i++;
 		}
 	}
-	// spawn_child(pipex.in_fd, pipex.out_fd, pipex, i);
 	j = 0;
 	while (j < i)
 		waitpid(ids[j++], NULL, 0);
 	close(pipex.in_fd);
-	//close(pipex.out_fd);
+	close(pipex.outfile_fd);
 }

@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 16:47:10 by nazouz            #+#    #+#              #
-#    Updated: 2024/01/20 11:10:07 by nazouz           ###   ########.fr        #
+#    Updated: 2024/01/22 21:02:09 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,14 @@ SRCS				=	\
 					./libft/ft_strlen.c \
 					./libft/ft_memcpy.c \
 					./libft/ft_strlcpy.c \
+					./ft_printf/ft_printf.c \
+					./ft_printf/ft_print_add.c \
+					./ft_printf/ft_printhex.c \
+					./ft_printf/ft_printu.c \
+					./ft_printf/ft_putchar.c \
+					./ft_printf/ft_putnbr.c \
+					./ft_printf/ft_putstr.c \
+					./exit.c \
 					./helpers.c \
 					./parse.c \
 					./parse_utils.c \

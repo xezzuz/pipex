@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 15:56:24 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 21:51:49 by nazouz           ###   ########.fr       */
+/*   Created: 2023/11/08 12:31:37 by nazouz            #+#    #+#             */
+/*   Updated: 2024/01/22 11:12:56 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-void	aa(void)
+int	ft_putchar(int c)
 {
-	system("leaks pipex");
-}
-
-int main(int argc, char **argv, char **env)
-{
-	t_pipex		pipex;
-
-	if (argc != 5)
-		return (ft_putstr_fd("Usage: ./pipex infile cmd1 cmd2 outfile\n", 2), 1);
-	ft_init_pipex(argc, argv, env, &pipex);
-	ft_check_args(&pipex);
-	ft_exec_cmd(pipex);
-	atexit(aa);
-	ft_exit(&pipex, 0);
+	return (write(2, &c, 1));
 }
