@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:15:34 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 21:52:37 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/22 21:59:05 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_check_args(t_pipex *pipex)
 		if (access(pipex->cmds_args[i][0], X_OK) == 0)
 			pipex->cmds_paths[i] = pipex->cmds_args[i][0];
 		else
-			pipex->cmds_paths[i] = ft_check_cmd(pipex->cmds_args[i], pipex->paths);
+			pipex->cmds_paths[i]
+				= ft_check_cmd(pipex->cmds_args[i], pipex->paths);
 		i++;
 	}
 	pipex->cmds_paths[i] = NULL;
@@ -33,7 +34,7 @@ void	ft_open_io_files(t_pipex *pipex)
 	pipex->infile_fd = open(pipex->infile, O_RDONLY);
 	if (pipex->infile_fd == -1)
 		(perror("pipex"), ft_exit(pipex, 1));
-	pipex->outfile_fd = open(pipex->outfile, O_RDWR | O_CREAT | O_TRUNC , 0644);
+	pipex->outfile_fd = open(pipex->outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile_fd == -1)
 		(perror("pipex"), close(pipex->infile_fd), ft_exit(pipex, 1));
 }

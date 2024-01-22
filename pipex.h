@@ -6,12 +6,12 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:56:39 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 21:52:00 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/22 22:13:27 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
-#define PIPEX_H
+# define PIPEX_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -63,7 +63,7 @@ void	ft_init_pipex(int argc, char **argv, char **env, t_pipex *pipex);
 void	ft_check_args(t_pipex *pipex);
 void	ft_open_io_files(t_pipex *pipex);
 char	**ft_get_path(char **env);
-void	ft_exec_cmd(t_pipex pipex);
+void	ft_exec_cmd(t_pipex *pipex);
 void	ft_exit(t_pipex *pipex, int status);
 char	*ft_check_cmd(char **cmd, char **paths);
 

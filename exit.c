@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:54:31 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 21:52:14 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/22 22:01:37 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_free_array(char **array)
 void	ft_exit(t_pipex *pipex, int status)
 {
 	int			i;
-	
+
 	ft_free_array(pipex->paths);
 	i = 0;
 	while (i < pipex->cmds_nbr)

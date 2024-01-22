@@ -1,0 +1,13 @@
+Makefile
+execute.c
+exit.c
+file1
+ft_printf
+helpers.c
+libft
+main.c
+outfile
+parse.c
+parse_utils.c
+pipex
+pipex.h
