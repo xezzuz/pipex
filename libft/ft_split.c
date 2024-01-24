@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:32:02 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/17 16:50:53 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:31:43 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 static	size_t	ft_count_words(const char *str, char c)
 {

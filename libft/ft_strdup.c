@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:29:15 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 16:19:30 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:32:53 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 char	*ft_strdup(const char *s1)
 {

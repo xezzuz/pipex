@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:32:48 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 11:13:07 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:34:02 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 static int	ft_print_ulong_hex(unsigned long n)
 {

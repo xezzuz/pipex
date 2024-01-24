@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 15:56:24 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 22:13:31 by nazouz           ###   ########.fr       */
+/*   Created: 2023/10/31 17:32:45 by nazouz            #+#    #+#             */
+/*   Updated: 2024/01/23 20:32:51 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../includes/pipex.h"
 
-void	aa(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	system("leaks pipex");
-}
+	size_t		i;
 
-int	main(int argc, char **argv, char **env)
-{
-	t_pipex		pipex;
-
-	if (argc != 5)
-		return (ft_putstr_fd("Usage: ./pipex file1 cmd1 cmd2 file2\n", 2), 1);
-	ft_init_pipex(argc, argv, env, &pipex);
-	ft_check_args(&pipex);
-	ft_exec_cmd(&pipex);
-	atexit(aa);
-	ft_exit(&pipex, 0);
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (s1[i] == '\0' || s2[i] == '\0')
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

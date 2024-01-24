@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:59:24 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 11:13:01 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:34:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 int	ft_printhex(unsigned int n, char *hex)
 {

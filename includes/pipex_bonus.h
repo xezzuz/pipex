@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:56:39 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 22:13:27 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:16:33 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
+# define BUFFER_SIZE 5
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,6 +21,7 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <string.h>
+# include <limits.h>
 
 typedef struct s_pipex
 {
@@ -30,12 +32,14 @@ typedef struct s_pipex
 	int		outfile_fd;
 	int		in_fd;
 	int		out_fd;
-	char	**cmds_paths;
 	char	***cmds_args;
 	char	**paths;
+	int		here_doc;
+	int		*ids;
 }	t_pipex;
 
 //	LIBFT
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
@@ -45,6 +49,7 @@ char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*get_next_line(int fd);
 
 //	PRINTF
 int		ft_putchar(int c);
@@ -66,5 +71,6 @@ char	**ft_get_path(char **env);
 void	ft_exec_cmd(t_pipex *pipex);
 void	ft_exit(t_pipex *pipex, int status);
 char	*ft_check_cmd(char **cmd, char **paths);
+int		ft_here_doc(char **argv);
 
 #endif

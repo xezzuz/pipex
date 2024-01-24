@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:54:45 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 16:23:47 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:32:56 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

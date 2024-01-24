@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:44:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 11:12:50 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:34:44 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 int	ft_putnbr(int n)
 {

@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:45:35 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/22 11:13:03 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:34:39 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 int	ft_print_format(char format, va_list arg_ptr)
 {

@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:26:11 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/18 15:53:27 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:32:47 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
