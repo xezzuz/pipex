@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 16:47:10 by nazouz            #+#    #+#              #
-#    Updated: 2024/01/24 14:37:57 by nazouz           ###   ########.fr        #
+#    Updated: 2024/01/26 10:04:45 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_BONUS		=	pipex_bonus
 
 CC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-Wall -Wextra -Werror
 
 INCLUDES		=	./includes/pipex.h
 
@@ -64,10 +64,10 @@ SRCS_BONUS			=	\
 					./ft_printf/ft_putnbr.c \
 					./ft_printf/ft_putstr.c \
 					./get_next_line/get_next_line.c \
-					./srcs/bonus/parse.c \
-					./srcs/bonus/execute.c \
-					./srcs/bonus/here_doc.c \
-					./srcs/bonus/main.c
+					./srcs/bonus/parse_bonus.c \
+					./srcs/bonus/execute_bonus.c \
+					./srcs/bonus/here_doc_bonus.c \
+					./srcs/bonus/main_bonus.c
 
 OBJS			=	$(SRCS:.c=.o)
 
