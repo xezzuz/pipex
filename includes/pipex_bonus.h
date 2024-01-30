@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:56:39 by nazouz            #+#    #+#             */
-/*   Updated: 2024/01/24 17:16:33 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/01/28 14:06:33 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_pipex
 	char	**paths;
 	int		here_doc;
 	int		*ids;
+	char	**argv;
 }	t_pipex;
 
 //	LIBFT

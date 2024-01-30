@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 16:47:10 by nazouz            #+#    #+#              #
-#    Updated: 2024/01/26 10:04:45 by nazouz           ###   ########.fr        #
+#    Updated: 2024/01/27 19:39:38 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,10 +81,10 @@ all : $(NAME)
 bonus : $(NAME_BONUS)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 $(NAME_BONUS) : $(OBJS_BONUS)
-	$(CC) $(OBJS_BONUS) -o $@
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $@
 
 clean :
 	$(RM) $(OBJS) $(OBJS_BONUS)
